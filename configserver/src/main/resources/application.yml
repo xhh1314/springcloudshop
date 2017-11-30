@@ -4,9 +4,22 @@ spring:
   cloud:
     config:
       server:
-        git: https://github.com/xhh1314/springcloudshop
-        search-paths: configserver/src/main/resources/shared
+        git:
+          uri: https://github.com/xhh1314/springcloudshop
+          search-paths: configserver/src/main/resources/shared
       label: dev
+#spring:
+#  application:
+#    name: configserver
+#  cloud:
+#    config:
+#      server:
+#        native:
+#          search-locations: classpath:/shared
+#          default-label: dev
+#
+#  profiles:
+#    active: native
 server:
   port: 8888
 
