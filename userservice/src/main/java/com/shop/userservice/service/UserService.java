@@ -20,4 +20,5 @@ public interface UserService {
     public boolean register(User user);
     public boolean verificationUser(User user);
 
+    int selectOrderItemNuber(String user);
 }

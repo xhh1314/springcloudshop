@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../../../static/static/js/react/react.js"></script>
+<script src="../../../static/static/js/react/react-dom.js"></script>
+<script src="../../../static/static/js/react/browser.min.js"></script>
+</head>
+<body>
+	<h1>succcess</h1>
+	<div id="example"></div>
+	<script type="text/babel">
+      var arr = [
+        <h1 key="1">Hello world!</h1>,
+        <h2 key="2">React is awesome</h2>,
+      ];
+var arr2=[<span>李浩你可好</span>];
+      ReactDOM.render(
+       <span>{arr}</span>,
+        document.getElementById('example')
+      );
+    </script>
+
+<!-- 组件 -->
+	<script type="text/babel">
+var HelloMessage = React.createClass({
+render: function(){
+return <h1>hello {this.props.name}</h1>;
+}
+});
+ReactDOM.render(
+<HelloMessage name="lihao" />,
+document.getElementById('example')
+);
+
+</script>
+
+	<script type="text/babel">
+      var HelloMessage = React.createClass({
+        render: function() {
+          return <h1>Hello {this.props.name}</h1>;
+        }
+      });
+      ReactDOM.render(
+        <HelloMessage name="John" />,
+        document.getElementById('example')
+      );
+    </script>
+<!-- 验证 -->
+<div id="example3"></div>
+<script type="text/babel">
+var Mytitle=React.createClass({
+propTypes:{
+title:React.PropTypes.string.isRequired
+},
+render:function(){
+return <span>验证{this.props.title}</span>
+}
+});
+var data_title=33;
+ReactDOM.render(
+<Mytitle title={data_title} />,document.getElementById('example3')
+);
+
+</script>
+ <div id="example4"></div>
+ <script type="text/babel">
+var MyComponet=React.createClass({
+handleClick:function(){
+this.refs.myInputtext.focus();
+},
+render:function(){
+return (
+<div>
+<input type="text" ref="myInputtext"/>
+<input type="button" value="focus on the input text" onClick={this.handleClick}/>
+</div>
+);
+}
+});
+
+ReactDOM.render(<MyComponet />,document.getElementById('example4'));
+
+</script>
+   
+<!-- 状态 -->
+<div id="example5"></div>
+    <script type="text/babel">
+var LikeButton = React.createClass({
+  getInitialState: function() {
+    return {liked: false};
+  },
+  handleClick: function(event) {
+    this.setState({liked: !this.state.liked});
+  },
+  render: function() {
+    var text = this.state.liked ? 'like' : 'haven\'t liked';
+    return (
+      <p onClick={this.handleClick}>
+        You {text} this. Click to toggle.
+      </p>
+    );
+  }
+});
+ReactDOM.render(
+  <LikeButton />,
+  document.getElementById('example5')
+);
+    </script>
+    
+    <!-- 表单 -->
+     <div id="example6"></div>
+    <script type="text/babel">
+      var Input = React.createClass({
+        getInitialState: function() {
+          return {value: 'Hello!'};
+        },
+        handleChange: function(event) {
+          this.setState({value: event.target.value});
+        },
+        render: function () {
+          var value = this.state.value;
+          return (
+            <div>
+              <input type="text" value={value} onChange={this.handleChange} />
+              <p>{value}</p>
+            </div>
+          );
+        }
+      });
+      ReactDOM.render(<Input/>, document.getElementById('example6'));
+    </script>
+    
+    <!-- 生命周期 -->
+    
+    <div id="example7"></div>
+    <script type="text/babel">
+      var Hello = React.createClass({
+        getInitialState: function () {
+          return {
+            opacity: 1.0
+          };
+        },
+        componentDidMount: function () {
+          this.timer = setInterval(function () {
+            var opacity = this.state.opacity;
+            opacity -= .05;
+            if (opacity < 0.1) {
+              opacity = 1.0;
+            }
+            this.setState({
+              opacity: opacity
+            });
+          }.bind(this), 100);
+        },
+        render: function () {
+          return (
+            <div style={{opacity: this.state.opacity}}>
+              Hello {this.props.name}
+            </div>
+          );
+        }
+      });
+      ReactDOM.render(
+        <Hello name="world"/>,
+        document.getElementById('example7')
+      );
+    </script>
+    
+</body>
+</html>

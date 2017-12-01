@@ -106,5 +106,10 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public int selectOrderItemNuber(String user) {
+        return 0;
+    }
+
 }
 

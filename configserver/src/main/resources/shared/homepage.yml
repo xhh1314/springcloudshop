@@ -7,8 +7,6 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
-server:
-  port: 8081
 spring:
   profiles: dev
 #数据源信息
@@ -61,6 +59,7 @@ spring:
 #配置freemarker
   freemarker:
     request-context-attribute : request
+    prefix: views/
 #开发环境配置日志级别
 logging:
   level:
@@ -89,8 +88,6 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
-server:
-  port : 8080
 spring:
   profiles : prod
 #数据源信息

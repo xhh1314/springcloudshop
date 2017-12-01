@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: homepage
+  cloud:
+    config:
+      uri: http://localhost:8888
+  profiles:
+    active: dev
+server:
+  port: 8080

@@ -1,0 +1,8 @@
+.myTable {
+	width: 1000px;
+	margin-left: 5%;
+}
+.pvthead .tid{width:5%;}
+.pvthead .tvalue{width:35%;}
+.pvthead .tp{width:60%;}
+.pvtable tr{height: 40px;}

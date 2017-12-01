@@ -7,8 +7,6 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
-server:
-  port: 8081
 spring:
   profiles: dev
 #数据源信息
@@ -89,8 +87,6 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
-server:
-  port : 8080
 spring:
   profiles : prod
 #数据源信息

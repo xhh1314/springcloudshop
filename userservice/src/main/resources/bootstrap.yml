@@ -3,6 +3,8 @@ spring:
     name: userservice
   cloud:
     config:
-      uri: http://configserver:8888
+      uri: http://localhost:8888
+  profiles:
+    active: dev
 server:
   port: 8081

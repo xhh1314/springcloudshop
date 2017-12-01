@@ -123,8 +123,8 @@ public class UserController {
      */
     private void loginInial(HttpSession session) {
 
-       // int cartNumber = orderService.selectOrderItemNuber(((User) session.getAttribute("user")).getUuid());
-       // session.setAttribute("cartNumber", cartNumber);
+        int cartNumber = userService.selectOrderItemNuber(((User) session.getAttribute("user")).getUuid());
+        session.setAttribute("cartNumber", cartNumber);
     }
 
     /**
