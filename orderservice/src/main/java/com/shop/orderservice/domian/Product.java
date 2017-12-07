@@ -15,8 +15,7 @@ public class Product {
     private float promotePrice;
     private int stock;
     private String createTime;
-    private Integer subdivideId;
-    private String[] imagePath;
+    private String test;
     /**
      *第一张图片路径
     */
@@ -61,36 +60,25 @@ public class Product {
     public void setStock(int stock) {
         this.stock = stock;
     }
-
     public String getCreateTime() {
         return createTime;
     }
-
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
-
-    public Integer getSubdivideId() {
-        return subdivideId;
-    }
-
-    public void setSubdivideId(Integer subdivideId) {
-        this.subdivideId = subdivideId;
-    }
-
-    public String[] getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String[] imagePath) {
-        this.imagePath = imagePath;
-    }
-
     public String getFristImagePath() {
         return fristImagePath;
     }
 
     public void setFristImagePath(String fristImagePath) {
         this.fristImagePath = fristImagePath;
+    }
+
+    public String getTest() {
+        return test;
+    }
+
+    public void setTest(String test) {
+        this.test = test;
     }
 }

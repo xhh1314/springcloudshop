@@ -1,10 +1,9 @@
 package com.shop.orderservice.controller;
 
 import com.shop.orderservice.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author 李浩
@@ -14,11 +13,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ResponseBody
 public class ApiController {
 
+    @Autowired
     private OrderService orderService;
 
-    @RequestMapping(value = "/getOrderItemNumberByUserId/{uuid}")
-    public  String returnCartNumber(@PathVariable("uuid") String uuid){
+    @RequestMapping(value = "/getOrderItemNumberByUserId",method= RequestMethod.GET)
+    public  String returnCartNumber(@RequestParam("uuid") String uuid){
         int number=orderService.selectOrderItemNuber(uuid);
-        return "number:"+number;
+        return "{\"number\":"+number+"}";
     }
 }

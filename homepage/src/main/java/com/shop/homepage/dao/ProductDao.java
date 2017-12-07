@@ -1,6 +1,7 @@
 package com.shop.homepage.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import com.shop.homepage.bean.Product;
 
@@ -17,4 +18,5 @@ public interface ProductDao {
 	 */
 	public List<Product> selectByKeys(String keys);
 
+    Set<Product> findProductByIds(String[] ids);
 }

@@ -1,6 +1,7 @@
 package com.shop.homepage.dao.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import com.shop.homepage.dao.ProductDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,11 @@ public class ProductDaoImp implements ProductDao {
 	public List<Product> selectByKeys(String keys) {
 		// TODO Auto-generated method stub
 		return pr.selectByKeys(keys);
+	}
+
+	@Override
+	public Set<Product> findProductByIds(String[] ids) {
+		return pr.findProductByIds(ids);
 	}
 
 }
