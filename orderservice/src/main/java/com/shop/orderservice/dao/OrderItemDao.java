@@ -1,6 +1,7 @@
 package com.shop.orderservice.dao;
 
 import com.shop.orderservice.domian.OrderItem;
+import com.shop.orderservice.domian.OrderItemDO;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  */
 public interface OrderItemDao {
     public void addOrderItem(OrderItem orderItem);
-    public List<OrderItem> selectOrderItemsByUser(String userUUID);
+    public List<OrderItemDO> selectOrderItemsByUser(String userUUID);
     /**
      * @param userUUID
      * @return

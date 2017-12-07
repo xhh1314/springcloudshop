@@ -3,10 +3,13 @@ package com.shop.orderservice.service;
 import com.shop.orderservice.dao.OrderItemDao;
 import com.shop.orderservice.dao.OrdersDao;
 import com.shop.orderservice.domian.OrderItem;
+import com.shop.orderservice.domian.OrderItemDO;
 import com.shop.orderservice.domian.Orders;
+import com.shop.orderservice.domian.Product;
 import com.shop.orderservice.manage.exception.MyException;
 import com.shop.orderservice.manage.util.GetUUID;
 import com.shop.orderservice.manage.util.OrderCode;
+import com.shop.orderservice.service.Feign.MainPageServiceFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -17,6 +20,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author 李浩
@@ -46,7 +50,9 @@ public class OrderServiceImpl implements OrderService {
         if(orderNumber==null) {
             orderNumber=0;
         }
-        if(orderNumber!=0)//查询这个产品是否已经有添加到订单明细中，如果在订单明细表中已经有记录，则更新数量
+
+        //查询这个产品是否已经有添加到订单明细中，如果在订单明细表中已经有记录，则更新数量
+        if(orderNumber!=0)
         {
             orderItemDao.updateNumber(orderItem.getUser().getUuid(), orderItem.getProduct().getUuid(),orderItem.getNumber());
             return orderItem.getNumber();
@@ -62,7 +68,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderItem> selectOrderItemsByUser(String userUUID) {
         // TODO Auto-generated method stub
-        return orderItemDao.selectOrderItemsByUser(userUUID);
+       List<OrderItemDO> items= orderItemDao.selectOrderItemsByUser(userUUID);
+
+
+        return  null;
 
     }
 

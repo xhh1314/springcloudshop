@@ -12,6 +12,7 @@ import com.shop.userservice.manage.util.ResponseWrite;
 import com.shop.userservice.manage.util.SpringBeanUtil;
 import com.shop.userservice.manage.util.VerifyCodeUtil;
 import com.shop.userservice.service.UserService;
+import com.shop.userservice.web.controller.feign.OrderServiceFeign;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,9 @@ public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private OrderServiceFeign orderService;
 
 
     /**
@@ -123,7 +127,7 @@ public class UserController {
      */
     private void loginInial(HttpSession session) {
 
-        int cartNumber = userService.selectOrderItemNuber(((User) session.getAttribute("user")).getUuid());
+        int cartNumber = userService.selectOrderItemNumber(((User) session.getAttribute("user")).getUuid());
         session.setAttribute("cartNumber", cartNumber);
     }
 
@@ -158,7 +162,7 @@ public class UserController {
             Map<String, String> map = new HashMap<String, String>();
             map.put("name:", user.getName());
             map.put("age", "25");
-            return new Response().failure(map, "邮箱已经存在!");
+            return Response.failure(map, "邮箱已经存在!");
             // {"meta":{"success":true,"message":"邮箱验证成功！"},"data":{"name:":"李浩","age":"25"}}
         }
 
@@ -212,20 +216,19 @@ public class UserController {
     @RequestMapping(value = "/detectVerifyCode",method=RequestMethod.GET)
     public Response detectVerifyCode(@RequestParam("verifyCode") String verifyCode, HttpServletRequest request) {
         //response是否可以存在ConcurrentHashMap中，以session为key
-        Response rp = new Response();
         if (verifyCode == null) {
-            return rp.failure("", "验证码不能为空！");
+            return Response.failure("", "验证码不能为空！");
         }
         String code = (String) request.getSession(false).getAttribute("verifyCode");
         if (code == null) {
-            return rp.failure("", "后台系统出现异常！验证码不存在");
+            return Response.failure("", "后台系统出现异常！验证码不存在");
         }
         if (code.equalsIgnoreCase(verifyCode)) {
             //验证码输入正确
-            return rp.success();
+            return Response.success();
         } else {
             //验证码输入错误
-            return rp.failure("","验证码错误！");
+            return Response.failure("","验证码错误！");
         }
     }
 

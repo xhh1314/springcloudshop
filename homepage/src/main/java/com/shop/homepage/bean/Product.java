@@ -26,7 +26,7 @@ public class Product implements Serializable {
 	private String name;
 	private float originalPrice;
 	private float promotePrice;
-	private int stock;
+	private Integer stock;
 	private String createTime;
 	private Subdivide subdivide;
 	private List<ProductImage> productImage;
@@ -58,10 +58,10 @@ public class Product implements Serializable {
 	public void setPromotePrice(float promotePrice) {
 		this.promotePrice = promotePrice;
 	}
-	public int getStock() {
+	public Integer getStock() {
 		return stock;
 	}
-	public void setStock(int stock) {
+	public void setStock(Integer stock) {
 		this.stock = stock;
 	}
 	//@Temporal(TemporalType.TIMESTAMP)
@@ -96,7 +96,15 @@ public class Product implements Serializable {
 	public void setFristImagePath(String fristImagePath) {
 		this.fristImagePath = fristImagePath;
 	}
-	
 
 
+	public Product(String uuid, String name, float originalPrice, float promotePrice, int stock) {
+		this.uuid = uuid;
+		this.name = name;
+		this.originalPrice = originalPrice;
+		this.promotePrice = promotePrice;
+		this.stock = stock;
+	}
+
+	public Product() {}
 }

@@ -139,8 +139,7 @@ public class Orders implements Serializable {
         this.status = status;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "u_uuid", referencedColumnName = "uuid")
+@Transient
     public User getUser() {
         return user;
     }

@@ -20,8 +20,7 @@ public class Category implements Serializable {
 	private String uuid;
 	private String name;
 	private String description;
-	private List<Subdivide> subdivide;
-	
+
 	@Id
 	public String getUuid() {
 		return uuid;
@@ -45,17 +44,10 @@ public class Category implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	@OneToMany(mappedBy="category")
-	public List<Subdivide> getSubdivide() {
-		return subdivide;
-	}
-	public void setSubdivide(List<Subdivide> subdivide) {
-		this.subdivide = subdivide;
-	}
+
 	@Override
 	public String toString() {
-		return "Category [uuid=" + uuid + ", name=" + name + ", description=" + description + ", subdivide=" + subdivide
-				+ "]";
+		return "Category [uuid=" + uuid + ", name=" + name + ", description=" + description + ", subdivide=";
 	}
 	@Override
 	public int hashCode() {

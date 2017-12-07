@@ -12,13 +12,19 @@ import java.security.NoSuchAlgorithmException;
 
 public interface UserService {
 
-    public void insert(User user) throws NoSuchAlgorithmException, UnsupportedEncodingException;
-    public void update(User user);
-    public User selectByEmail(String email);
-    public User selectByUuid(String uuid);
-    public boolean login(String name,String password,String verificationCode);
-    public boolean register(User user);
-    public boolean verificationUser(User user);
+    void insert(User user) throws NoSuchAlgorithmException, UnsupportedEncodingException;
 
-    int selectOrderItemNuber(String user);
+    void update(User user);
+
+    User selectByEmail(String email);
+
+    User selectByUuid(String uuid);
+
+    boolean login(String name, String password, String verificationCode);
+
+    boolean register(User user);
+
+    boolean verificationUser(User user);
+
+    int selectOrderItemNumber(String user);
 }

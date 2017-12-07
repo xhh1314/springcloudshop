@@ -4,60 +4,59 @@ public class Response {
 
     public static final String OK = "ok";
     public static final String ERROR = "error";
-    private Meta meta;
-    private Object data;
+    private final Meta meta;
+    private final Object data;
+
+    Response(Meta meta, Object data) {
+        this.meta = meta;
+        this.data = data;
+    }
 
     /**
+     * 成功，带数据
      * @param data
      * @return
      */
-    public Response success(Object data) {
-        this.meta = new Meta(true, OK);
-        this.data = data;
-        return this;
+    public static Response success(Object data) {
+        return new Response(new Meta(true, OK), data);
     }
 
-    public Response success(Object data, String message) {
-        this.meta = new Meta(true, message);
-        this.data = data;
-        return this;
+    /**
+     * 成功，带数据和消息
+     * @param data
+     * @param message
+     * @return
+     */
+    public static Response success(Object data, String message) {
+        return new Response(new Meta(true, message), data);
     }
 
-    public Response success() {
-        this.meta = new Meta(true, OK);
-        return this;
+    /**
+     * 成功，带默认消息ok
+     * @return
+     */
+    public static Response success() {
+        return new Response(new Meta(true, OK), null);
     }
 
-    public Response failure(String message) {
-        this.meta = new Meta(false, message);
-        return this;
+    public static Response failure(String message) {
+
+        return new Response(new Meta(false, message), null);
     }
 
-    public Response failure(Object data, String message) {
-        this.meta = new Meta(false, message);
-        this.data = data;
-        return this;
+    public static Response failure(Object data, String message) {
+        return new Response(new Meta(false, message), data);
     }
 
-    public Response failure() {
-        this.meta = new Meta(false, ERROR);
-        return this;
+    public static Response failure() {
+        return new Response(new Meta(false, ERROR), null);
     }
 
     public Meta getMeta() {
         return meta;
     }
 
-    public void setMeta(Meta meta) {
-        this.meta = meta;
-    }
-
     public Object getData() {
-        return data;
+        return this.data;
     }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
-
 }

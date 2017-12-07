@@ -1,6 +1,7 @@
 package com.shop.orderservice.dao;
 
 import com.shop.orderservice.domian.OrderItem;
+import com.shop.orderservice.domian.OrderItemDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,11 +21,11 @@ public class OrderItemDaoImp implements OrderItemDao {
     @Override
     public void addOrderItem(OrderItem orderItem) {
         // TODO Auto-generated method stub
-        oir.save(orderItem);
+        oir.save(new OrderItemDO(orderItem));
     }
 
     @Override
-    public List<OrderItem> selectOrderItemsByUser(String userUUID) {
+    public List<OrderItemDO> selectOrderItemsByUser(String userUUID) {
         // TODO Auto-generated method stub
         return oir.findByUserAndOrderisnull(userUUID);
     }

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -185,6 +186,11 @@ public class ProductServiceImpl implements ProductService {
 			return null;
 		}
 		return productDao.selectByKeys(keys);
+	}
+
+	@Override
+	public Set<Product> listProductByIds(String[] ids) {
+		return productDao.findProductByIds(ids);
 	}
 
 }

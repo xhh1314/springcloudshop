@@ -1,9 +1,12 @@
 package com.shop.userservice.service;
 
+import com.alibaba.fastjson.JSON;
 import com.shop.userservice.dao.UserDao;
+import com.shop.userservice.domain.OrderItemBO;
 import com.shop.userservice.domain.User;
 import com.shop.userservice.manage.util.GetMd5;
 import com.shop.userservice.manage.util.GetUUID;
+import com.shop.userservice.web.controller.feign.OrderServiceFeign;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private OrderServiceFeign orderServiceFeign;
+
     @Override
     @Transactional
     public void insert(User user) throws NoSuchAlgorithmException, UnsupportedEncodingException {
@@ -107,8 +113,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int selectOrderItemNuber(String user) {
-        return 0;
+    public int selectOrderItemNumber(String userUUID) {
+        String number=orderServiceFeign.getOrderItemNumberByUserId(userUUID);
+        OrderItemBO orderItemBO=JSON.parseObject(number,OrderItemBO.class);
+        return orderItemBO.getNumber();
+
     }
 
 }
