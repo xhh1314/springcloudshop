@@ -22,8 +22,8 @@ public class OrderedProducer {
         producer.setNamesrvAddr("10.1.11.28:9876");
         //Launch the instance.
         producer.start();
-        String[] tags = new String[] {"TagA1", "TagB1", "TagC1", "TagD1", "TagE1"};
-        for (int i = 0; i < 100; i++) {
+        String[] tags = new String[] {"TagA1", "TagB1", "TagC1"};
+        for (int i = 0; i < 10; i++) {
             int orderId = i % 10;
             //Create a message instance, specifying topic, tag and message body.
             Message msg = new Message("TopicTest", tags[i % tags.length], "KEY" + i,
@@ -38,6 +38,7 @@ public class OrderedProducer {
             }, orderId);
 
             System.out.printf("%s%n", sendResult);
+            Thread.sleep(1000);
         }
         //server shutdown
         producer.shutdown();

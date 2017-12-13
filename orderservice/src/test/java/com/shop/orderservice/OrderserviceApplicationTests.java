@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
 import java.util.Set;
 
 @RunWith(SpringRunner.class)
@@ -36,7 +37,8 @@ public class OrderserviceApplicationTests {
 	public void listProductByIds(){
 
 		String[] ids={"3.8617950617351373E17","3.8617950617351373E18"};
-		Set<Product> products= mainPageServiceFeign.listProducts(ids);
+		HashMap<String,Product> products= mainPageServiceFeign.listProducts(ids);
+		HashMap<String,Product> products1= mainPageServiceFeign.listProducts(ids);
 
 	}
 

@@ -18,5 +18,5 @@ public interface ProductDao {
 	 */
 	public List<Product> selectByKeys(String keys);
 
-    Set<Product> findProductByIds(String[] ids);
+    List<Product> findProductByIds(String[] ids);
 }

@@ -1,6 +1,7 @@
 package com.shop.homepage.service;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -21,6 +22,6 @@ public interface ProductService {
 	public List<Product> selectBySubdivide(String Subdivideuuid);
 	public List<ProductPropertyValue> selectProductPropertyValue(String uuid);
 	public List<Product> selectBykeys(String keys);
-	Set<Product> listProductByIds(String[] ids);
+	List<Product> listProductByIds(String[] ids);
 	
 }

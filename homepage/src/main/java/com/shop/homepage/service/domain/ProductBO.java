@@ -5,6 +5,7 @@ import com.shop.homepage.bean.ProductImage;
 import com.shop.homepage.bean.Subdivide;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -106,13 +107,15 @@ public class ProductBO {
      * @date 2017/12/7
      * @version
      */
-    public static Set<ProductBO> transferFromProductDO(Set<Product> products) {
-        Set<ProductBO> productBOS = new HashSet<ProductBO>(32);
+    public static List<ProductBO> transferFromProductDO(List<Product> products) {
+        List<ProductBO> productBOS = new ArrayList<ProductBO>(32);
         for (Product e : products) {
             productBOS.add(new ProductBO(e));
         }
         return productBOS;
 
     }
+
+
 
 }

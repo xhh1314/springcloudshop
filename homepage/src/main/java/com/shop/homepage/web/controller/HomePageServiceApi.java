@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -25,9 +27,16 @@ public class HomePageServiceApi {
     private ProductService productService;
 
     @RequestMapping(value = "/listProducts", method = RequestMethod.GET)
-    public Set<ProductBO> listProduts(@RequestParam("productIds") String[] productIds) {
-        Set<Product> products= productService.listProductByIds(productIds);
-        return ProductBO.transferFromProductDO(products);
+    public HashMap<String,ProductBO> listProduts(@RequestParam("productIds") String[] productIds) {
+        List<Product> productList= productService.listProductByIds(productIds);
+        if(productList==null || productList.isEmpty())
+            return new HashMap<String,ProductBO>(2);
+        List<ProductBO> productBOS=ProductBO.transferFromProductDO(productList);
+        HashMap<String,ProductBO> products=new HashMap<String,ProductBO>(16);
+        for(ProductBO e:productBOS){
+            products.put(e.getUuid(),e);
+        }
+        return products;
 
     }
 

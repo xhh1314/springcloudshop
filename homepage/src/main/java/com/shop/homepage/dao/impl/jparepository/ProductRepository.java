@@ -30,5 +30,5 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 
 
 	@Query(value = "select  uuid, name,orignalprice,promoteprice,stock,createDate,sb_uuid from product where uuid in ?1",nativeQuery = true)
-    Set<Product> findProductByIds(String[] ids);
+    List<Product> findProductByIds(String[] ids);
 }

@@ -15,11 +15,15 @@ public class Product {
     private float promotePrice;
     private int stock;
     private String createTime;
-    private String test;
     /**
      *第一张图片路径
     */
     private String fristImagePath;
+
+    public Product(String productUuid) {
+        this.uuid=productUuid;
+    }
+    public Product(){}
 
     public String getUuid() {
         return uuid;
@@ -74,11 +78,30 @@ public class Product {
         this.fristImagePath = fristImagePath;
     }
 
-    public String getTest() {
-        return test;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return uuid.equals(product.uuid);
     }
 
-    public void setTest(String test) {
-        this.test = test;
+    @Override
+    public int hashCode() {
+        return uuid.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "uuid='" + uuid + '\'' +
+                ", name='" + name + '\'' +
+                ", originalPrice=" + originalPrice +
+                ", promotePrice=" + promotePrice +
+                ", stock=" + stock +
+                ", createTime='" + createTime + '\'' +
+                ", fristImagePath='" + fristImagePath + '\'' +
+                '}';
     }
 }

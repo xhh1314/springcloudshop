@@ -4,10 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -189,8 +186,10 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Set<Product> listProductByIds(String[] ids) {
-		return productDao.findProductByIds(ids);
+	public List<Product> listProductByIds(String[] ids) {
+		List<Product> productsList=productDao.findProductByIds(ids);
+		return  productsList;
+
 	}
 
 }

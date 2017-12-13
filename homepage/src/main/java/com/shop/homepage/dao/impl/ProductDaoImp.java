@@ -50,7 +50,7 @@ public class ProductDaoImp implements ProductDao {
 	}
 
 	@Override
-	public Set<Product> findProductByIds(String[] ids) {
+	public List<Product> findProductByIds(String[] ids) {
 		return pr.findProductByIds(ids);
 	}
 

@@ -10,8 +10,7 @@ import com.shop.orderservice.service.Feign.MainPageServiceFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author 李浩
@@ -30,7 +29,6 @@ public class OrderServiceImplRpc implements OrderService {
 
     @Override
     public List<OrderItem> selectOrderItemsByUser(String userUUID) {
-
         // TODO Auto-generated method stub
         List<OrderItemDO> items= orderItemDao.selectOrderItemsByUser(userUUID);
         String[] productIds=new String[items.size()];
@@ -38,9 +36,18 @@ public class OrderServiceImplRpc implements OrderService {
         for(OrderItemDO e:items){
             productIds[i++]=e.getProductUuid();
         }
-        Set<Product> products= mainPageServiceFeign.listProducts(productIds);
-
-        return  null;
+        HashMap<String,Product> products= mainPageServiceFeign.listProducts(productIds);
+        List<OrderItem> orderItems=new ArrayList<OrderItem>(items.size());
+        if(products==null){
+            products=new HashMap<>(4);
+        }
+        for(OrderItemDO e:items){
+           OrderItem orderItem=new OrderItem();
+           orderItem.setId(e.getId());
+           orderItem.setNumber(e.getNumber());
+           orderItem.setProduct(products.get(e.getProductUuid()));
+        }
+        return  orderItems;
     }
 
     @Override

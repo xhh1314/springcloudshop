@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
 import java.util.Set;
 
 @RunWith(SpringRunner.class)
@@ -22,7 +23,7 @@ public class HomepageApplicationTests {
 	@Test
 	public void listProductTest(){
 		String[] ids={"3.8617950617351373E17","3.8617950617351373E18"};
-		Set<Product> productSet=productService.listProductByIds(ids);
+		List<Product> productSet=productService.listProductByIds(ids);
 	}
 
 }
